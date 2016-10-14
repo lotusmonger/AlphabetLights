@@ -1,6 +1,7 @@
 uint32_t a = strip.n(0);
 uint32_t aa = strip.Color(255, 0, 255);
 uint32_t a = strip.n(0), strip.Color(255, 0, 255);
+uint32_t off = strip.Color(0, 0, 0);
 
 
 strip.setPixelColor(a, color);
