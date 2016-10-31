@@ -1,0 +1,81 @@
+
+#include <Adafruit_NeoPixel.h>
+#ifdef __AVR__
+  #include <avr/power.h>
+#endif
+
+#define PIN 6
+#define NUM_LEDS (26)
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+ strip.begin();
+  strip.show(); 
+
+}
+
+void loop(){ for (uint16_t i=0; i < strip.numPixels(); i++)
+  {// Some example procedures showing how to display to the pixels:
+  theaterChase(getColor(i), 150); 
+  }
+}
+  
+
+
+void theaterChase(uint32_t c, uint8_t wait) {
+  for (int j=0; j<10; j++) {  //do 10 cycles of chasing
+    for (int q=0; q < 3; q++) {
+      for (uint16_t i=0; i < strip.numPixels(); i=i+3) {
+        strip.setPixelColor(i+q, c);    //turn every third pixel on
+      }
+      strip.show();
+
+      delay(wait);
+
+      for (uint16_t i=0; i < strip.numPixels(); i=i+3) {
+        strip.setPixelColor(i+q, 0);        //turn every third pixel off
+      }
+    }
+  }
+}
+
+uint32_t getColor(uint8_t number) {
+  switch (number) {
+    // Green
+    case 0:
+    case 5:
+    case 10:
+    case 15:
+    case 20:
+    case 25:
+      return strip.Color(0, 255, 0);
+    // Purple
+    case 1:
+    case 6:
+    case 11:
+    case 16:
+    case 21:
+      return strip.Color(255,0,255);
+    // ORANGE
+    case 2:
+    case 7:
+    case 12:
+    case 17:
+    case 22:
+         return strip.Color(255, 150, 0);
+    // BLUE
+    case 3:
+    case 8:
+    case 13:
+    case 18:
+    case 23:
+      return strip.Color(0, 0, 255);
+    // YELLOW
+    case 4:
+    case 9:
+    case 14:
+    case 19:
+    case 24:
+      return strip.Color(255,255,0);
+      }
+}
