@@ -13,15 +13,12 @@ void setup() {
   strip.show(); 
 
 }
-
 void loop(){ for (uint16_t i=0; i < strip.numPixels(); i++)
   {// Some example procedures showing how to display to the pixels:
   theaterChase(getColor(i), 150); 
   }
 }
-  
-
-
+ 
 void theaterChase(uint32_t c, uint8_t wait) {
   for (int j=0; j<10; j++) {  //do 10 cycles of chasing
     for (int q=0; q < 3; q++) {
